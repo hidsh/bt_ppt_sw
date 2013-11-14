@@ -1,0 +1,507 @@
+
+ppt_sw.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         0000027e  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         0000000c  00800060  0000027e  00000312  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000002  0080006c  0080006c  0000031e  2**0
+                  ALLOC
+  3 .stab         000006b4  00000000  00000000  00000320  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      00000097  00000000  00000000  000009d4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .comment      0000002f  00000000  00000000  00000a6b  2**0
+                  CONTENTS, READONLY
+  6 .debug_aranges 00000048  00000000  00000000  00000a9a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_info   00000213  00000000  00000000  00000ae2  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_abbrev 0000013b  00000000  00000000  00000cf5  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_line   000001a5  00000000  00000000  00000e30  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_frame  000000d4  00000000  00000000  00000fd8  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_str    00000116  00000000  00000000  000010ac  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_loc    000001a1  00000000  00000000  000011c2  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 13 .debug_ranges 00000038  00000000  00000000  00001363  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	12 c0       	rjmp	.+36     	; 0x26 <__ctors_end>
+   2:	2a c0       	rjmp	.+84     	; 0x58 <__bad_interrupt>
+   4:	29 c0       	rjmp	.+82     	; 0x58 <__bad_interrupt>
+   6:	28 c0       	rjmp	.+80     	; 0x58 <__bad_interrupt>
+   8:	27 c0       	rjmp	.+78     	; 0x58 <__bad_interrupt>
+   a:	26 c0       	rjmp	.+76     	; 0x58 <__bad_interrupt>
+   c:	25 c0       	rjmp	.+74     	; 0x58 <__bad_interrupt>
+   e:	24 c0       	rjmp	.+72     	; 0x58 <__bad_interrupt>
+  10:	23 c0       	rjmp	.+70     	; 0x58 <__bad_interrupt>
+  12:	22 c0       	rjmp	.+68     	; 0x58 <__bad_interrupt>
+  14:	21 c0       	rjmp	.+66     	; 0x58 <__bad_interrupt>
+  16:	20 c0       	rjmp	.+64     	; 0x58 <__bad_interrupt>
+  18:	1f c0       	rjmp	.+62     	; 0x58 <__bad_interrupt>
+  1a:	1e c0       	rjmp	.+60     	; 0x58 <__bad_interrupt>
+  1c:	1d c0       	rjmp	.+58     	; 0x58 <__bad_interrupt>
+  1e:	1c c0       	rjmp	.+56     	; 0x58 <__bad_interrupt>
+  20:	1b c0       	rjmp	.+54     	; 0x58 <__bad_interrupt>
+  22:	1a c0       	rjmp	.+52     	; 0x58 <__bad_interrupt>
+  24:	19 c0       	rjmp	.+50     	; 0x58 <__bad_interrupt>
+
+00000026 <__ctors_end>:
+  26:	11 24       	eor	r1, r1
+  28:	1f be       	out	0x3f, r1	; 63
+  2a:	cf ed       	ldi	r28, 0xDF	; 223
+  2c:	cd bf       	out	0x3d, r28	; 61
+
+0000002e <__do_copy_data>:
+  2e:	10 e0       	ldi	r17, 0x00	; 0
+  30:	a0 e6       	ldi	r26, 0x60	; 96
+  32:	b0 e0       	ldi	r27, 0x00	; 0
+  34:	ee e7       	ldi	r30, 0x7E	; 126
+  36:	f2 e0       	ldi	r31, 0x02	; 2
+  38:	02 c0       	rjmp	.+4      	; 0x3e <__SP_L__+0x1>
+  3a:	05 90       	lpm	r0, Z+
+  3c:	0d 92       	st	X+, r0
+  3e:	ac 36       	cpi	r26, 0x6C	; 108
+  40:	b1 07       	cpc	r27, r17
+  42:	d9 f7       	brne	.-10     	; 0x3a <__do_copy_data+0xc>
+
+00000044 <__do_clear_bss>:
+  44:	20 e0       	ldi	r18, 0x00	; 0
+  46:	ac e6       	ldi	r26, 0x6C	; 108
+  48:	b0 e0       	ldi	r27, 0x00	; 0
+  4a:	01 c0       	rjmp	.+2      	; 0x4e <.do_clear_bss_start>
+
+0000004c <.do_clear_bss_loop>:
+  4c:	1d 92       	st	X+, r1
+
+0000004e <.do_clear_bss_start>:
+  4e:	ae 36       	cpi	r26, 0x6E	; 110
+  50:	b2 07       	cpc	r27, r18
+  52:	e1 f7       	brne	.-8      	; 0x4c <.do_clear_bss_loop>
+  54:	e3 d0       	rcall	.+454    	; 0x21c <main>
+  56:	11 c1       	rjmp	.+546    	; 0x27a <_exit>
+
+00000058 <__bad_interrupt>:
+  58:	d3 cf       	rjmp	.-90     	; 0x0 <__vectors>
+
+0000005a <is_pressed_forward>:
+//             start len   desc  mod    00   scan1 scan2 scan3 scan4 scan5 scan6
+u1 report[] = {0xFD, 0x09, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+
+
+bool is_pressed_forward(void)
+{
+  5a:	cf 93       	push	r28
+  5c:	df 93       	push	r29
+  5e:	cd b7       	in	r28, 0x3d	; 61
+  60:	dd 27       	eor	r29, r29
+  62:	c3 50       	subi	r28, 0x03	; 3
+  64:	cd bf       	out	0x3d, r28	; 61
+    u1 *pks = &keystate[KS_FORWARD];
+  66:	8c e6       	ldi	r24, 0x6C	; 108
+  68:	90 e0       	ldi	r25, 0x00	; 0
+  6a:	9a 83       	std	Y+2, r25	; 0x02
+  6c:	89 83       	std	Y+1, r24	; 0x01
+    u1 k = (PINB & (1<<PINB0))? FALSE:TRUE;
+  6e:	86 e3       	ldi	r24, 0x36	; 54
+  70:	90 e0       	ldi	r25, 0x00	; 0
+  72:	fc 01       	movw	r30, r24
+  74:	80 81       	ld	r24, Z
+  76:	88 2f       	mov	r24, r24
+  78:	90 e0       	ldi	r25, 0x00	; 0
+  7a:	81 70       	andi	r24, 0x01	; 1
+  7c:	99 27       	eor	r25, r25
+  7e:	21 e0       	ldi	r18, 0x01	; 1
+  80:	00 97       	sbiw	r24, 0x00	; 0
+  82:	09 f0       	breq	.+2      	; 0x86 <is_pressed_forward+0x2c>
+  84:	20 e0       	ldi	r18, 0x00	; 0
+  86:	2b 83       	std	Y+3, r18	; 0x03
+    if((k == TRUE) && (*pks == 0))
+  88:	8b 81       	ldd	r24, Y+3	; 0x03
+  8a:	81 30       	cpi	r24, 0x01	; 1
+  8c:	61 f4       	brne	.+24     	; 0xa6 <is_pressed_forward+0x4c>
+  8e:	89 81       	ldd	r24, Y+1	; 0x01
+  90:	9a 81       	ldd	r25, Y+2	; 0x02
+  92:	fc 01       	movw	r30, r24
+  94:	80 81       	ld	r24, Z
+  96:	88 23       	and	r24, r24
+  98:	31 f4       	brne	.+12     	; 0xa6 <is_pressed_forward+0x4c>
+		*pks = 1;
+  9a:	89 81       	ldd	r24, Y+1	; 0x01
+  9c:	9a 81       	ldd	r25, Y+2	; 0x02
+  9e:	21 e0       	ldi	r18, 0x01	; 1
+  a0:	fc 01       	movw	r30, r24
+  a2:	20 83       	st	Z, r18
+  a4:	0e c0       	rjmp	.+28     	; 0xc2 <is_pressed_forward+0x68>
+    else if((k == FALSE) && (*pks == 1))
+  a6:	8b 81       	ldd	r24, Y+3	; 0x03
+  a8:	88 23       	and	r24, r24
+  aa:	59 f4       	brne	.+22     	; 0xc2 <is_pressed_forward+0x68>
+  ac:	89 81       	ldd	r24, Y+1	; 0x01
+  ae:	9a 81       	ldd	r25, Y+2	; 0x02
+  b0:	fc 01       	movw	r30, r24
+  b2:	80 81       	ld	r24, Z
+  b4:	81 30       	cpi	r24, 0x01	; 1
+  b6:	29 f4       	brne	.+10     	; 0xc2 <is_pressed_forward+0x68>
+		*pks = 2;
+  b8:	89 81       	ldd	r24, Y+1	; 0x01
+  ba:	9a 81       	ldd	r25, Y+2	; 0x02
+  bc:	22 e0       	ldi	r18, 0x02	; 2
+  be:	fc 01       	movw	r30, r24
+  c0:	20 83       	st	Z, r18
+
+    return (*pks == 2);
+  c2:	89 81       	ldd	r24, Y+1	; 0x01
+  c4:	9a 81       	ldd	r25, Y+2	; 0x02
+  c6:	fc 01       	movw	r30, r24
+  c8:	90 81       	ld	r25, Z
+  ca:	81 e0       	ldi	r24, 0x01	; 1
+  cc:	92 30       	cpi	r25, 0x02	; 2
+  ce:	09 f0       	breq	.+2      	; 0xd2 <is_pressed_forward+0x78>
+  d0:	80 e0       	ldi	r24, 0x00	; 0
+}
+  d2:	cd 5f       	subi	r28, 0xFD	; 253
+  d4:	cd bf       	out	0x3d, r28	; 61
+  d6:	df 91       	pop	r29
+  d8:	cf 91       	pop	r28
+  da:	08 95       	ret
+
+000000dc <is_pressed_backward>:
+
+bool is_pressed_backward(void)
+{
+  dc:	cf 93       	push	r28
+  de:	df 93       	push	r29
+  e0:	cd b7       	in	r28, 0x3d	; 61
+  e2:	dd 27       	eor	r29, r29
+  e4:	c3 50       	subi	r28, 0x03	; 3
+  e6:	cd bf       	out	0x3d, r28	; 61
+	u1 *pks = &keystate[KS_BACKWARD];
+  e8:	8d e6       	ldi	r24, 0x6D	; 109
+  ea:	90 e0       	ldi	r25, 0x00	; 0
+  ec:	9a 83       	std	Y+2, r25	; 0x02
+  ee:	89 83       	std	Y+1, r24	; 0x01
+	u1 k = (PINB & (1<<PINB1))? FALSE:TRUE;
+  f0:	86 e3       	ldi	r24, 0x36	; 54
+  f2:	90 e0       	ldi	r25, 0x00	; 0
+  f4:	fc 01       	movw	r30, r24
+  f6:	80 81       	ld	r24, Z
+  f8:	88 2f       	mov	r24, r24
+  fa:	90 e0       	ldi	r25, 0x00	; 0
+  fc:	82 70       	andi	r24, 0x02	; 2
+  fe:	99 27       	eor	r25, r25
+ 100:	21 e0       	ldi	r18, 0x01	; 1
+ 102:	00 97       	sbiw	r24, 0x00	; 0
+ 104:	09 f0       	breq	.+2      	; 0x108 <__stack+0x29>
+ 106:	20 e0       	ldi	r18, 0x00	; 0
+ 108:	2b 83       	std	Y+3, r18	; 0x03
+	if((k == TRUE) && (*pks == 0))
+ 10a:	8b 81       	ldd	r24, Y+3	; 0x03
+ 10c:	81 30       	cpi	r24, 0x01	; 1
+ 10e:	61 f4       	brne	.+24     	; 0x128 <__stack+0x49>
+ 110:	89 81       	ldd	r24, Y+1	; 0x01
+ 112:	9a 81       	ldd	r25, Y+2	; 0x02
+ 114:	fc 01       	movw	r30, r24
+ 116:	80 81       	ld	r24, Z
+ 118:	88 23       	and	r24, r24
+ 11a:	31 f4       	brne	.+12     	; 0x128 <__stack+0x49>
+		*pks = 1;
+ 11c:	89 81       	ldd	r24, Y+1	; 0x01
+ 11e:	9a 81       	ldd	r25, Y+2	; 0x02
+ 120:	21 e0       	ldi	r18, 0x01	; 1
+ 122:	fc 01       	movw	r30, r24
+ 124:	20 83       	st	Z, r18
+ 126:	0e c0       	rjmp	.+28     	; 0x144 <__stack+0x65>
+	else if((k == FALSE) && (*pks == 1))
+ 128:	8b 81       	ldd	r24, Y+3	; 0x03
+ 12a:	88 23       	and	r24, r24
+ 12c:	59 f4       	brne	.+22     	; 0x144 <__stack+0x65>
+ 12e:	89 81       	ldd	r24, Y+1	; 0x01
+ 130:	9a 81       	ldd	r25, Y+2	; 0x02
+ 132:	fc 01       	movw	r30, r24
+ 134:	80 81       	ld	r24, Z
+ 136:	81 30       	cpi	r24, 0x01	; 1
+ 138:	29 f4       	brne	.+10     	; 0x144 <__stack+0x65>
+		*pks = 2;
+ 13a:	89 81       	ldd	r24, Y+1	; 0x01
+ 13c:	9a 81       	ldd	r25, Y+2	; 0x02
+ 13e:	22 e0       	ldi	r18, 0x02	; 2
+ 140:	fc 01       	movw	r30, r24
+ 142:	20 83       	st	Z, r18
+
+	return (*pks == 2);
+ 144:	89 81       	ldd	r24, Y+1	; 0x01
+ 146:	9a 81       	ldd	r25, Y+2	; 0x02
+ 148:	fc 01       	movw	r30, r24
+ 14a:	90 81       	ld	r25, Z
+ 14c:	81 e0       	ldi	r24, 0x01	; 1
+ 14e:	92 30       	cpi	r25, 0x02	; 2
+ 150:	09 f0       	breq	.+2      	; 0x154 <__stack+0x75>
+ 152:	80 e0       	ldi	r24, 0x00	; 0
+}
+ 154:	cd 5f       	subi	r28, 0xFD	; 253
+ 156:	cd bf       	out	0x3d, r28	; 61
+ 158:	df 91       	pop	r29
+ 15a:	cf 91       	pop	r28
+ 15c:	08 95       	ret
+
+0000015e <send_byte>:
+
+void send_byte(u1 ch)
+{
+ 15e:	cf 93       	push	r28
+ 160:	df 93       	push	r29
+ 162:	1f 92       	push	r1
+ 164:	cd b7       	in	r28, 0x3d	; 61
+ 166:	dd 27       	eor	r29, r29
+ 168:	89 83       	std	Y+1, r24	; 0x01
+	while (!(UCSRA & (1<<UDRE)))	// Wait for empty transmit buffer
+ 16a:	00 00       	nop
+ 16c:	8b e2       	ldi	r24, 0x2B	; 43
+ 16e:	90 e0       	ldi	r25, 0x00	; 0
+ 170:	fc 01       	movw	r30, r24
+ 172:	80 81       	ld	r24, Z
+ 174:	88 2f       	mov	r24, r24
+ 176:	90 e0       	ldi	r25, 0x00	; 0
+ 178:	80 72       	andi	r24, 0x20	; 32
+ 17a:	99 27       	eor	r25, r25
+ 17c:	00 97       	sbiw	r24, 0x00	; 0
+ 17e:	b1 f3       	breq	.-20     	; 0x16c <send_byte+0xe>
+		;
+
+	UDR = ch;						// Put data into buffer
+ 180:	8c e2       	ldi	r24, 0x2C	; 44
+ 182:	90 e0       	ldi	r25, 0x00	; 0
+ 184:	29 81       	ldd	r18, Y+1	; 0x01
+ 186:	fc 01       	movw	r30, r24
+ 188:	20 83       	st	Z, r18
+}
+ 18a:	0f 90       	pop	r0
+ 18c:	df 91       	pop	r29
+ 18e:	cf 91       	pop	r28
+ 190:	08 95       	ret
+
+00000192 <send_report>:
+
+void send_report(u1 scan_code)
+{
+ 192:	cf 93       	push	r28
+ 194:	df 93       	push	r29
+ 196:	00 d0       	rcall	.+0      	; 0x198 <send_report+0x6>
+ 198:	cd b7       	in	r28, 0x3d	; 61
+ 19a:	dd 27       	eor	r29, r29
+ 19c:	8a 83       	std	Y+2, r24	; 0x02
+	report[5] = scan_code;
+ 19e:	8a 81       	ldd	r24, Y+2	; 0x02
+ 1a0:	80 93 65 00 	sts	0x0065, r24
+	
+	for(u1 i=0; i<sizeof(report)/sizeof(u1); i++)
+ 1a4:	19 82       	std	Y+1, r1	; 0x01
+ 1a6:	0b c0       	rjmp	.+22     	; 0x1be <send_report+0x2c>
+	send_byte(report[i]);
+ 1a8:	89 81       	ldd	r24, Y+1	; 0x01
+ 1aa:	88 2f       	mov	r24, r24
+ 1ac:	90 e0       	ldi	r25, 0x00	; 0
+ 1ae:	80 5a       	subi	r24, 0xA0	; 160
+ 1b0:	9f 4f       	sbci	r25, 0xFF	; 255
+ 1b2:	fc 01       	movw	r30, r24
+ 1b4:	80 81       	ld	r24, Z
+ 1b6:	d3 df       	rcall	.-90     	; 0x15e <send_byte>
+
+void send_report(u1 scan_code)
+{
+	report[5] = scan_code;
+	
+	for(u1 i=0; i<sizeof(report)/sizeof(u1); i++)
+ 1b8:	89 81       	ldd	r24, Y+1	; 0x01
+ 1ba:	8f 5f       	subi	r24, 0xFF	; 255
+ 1bc:	89 83       	std	Y+1, r24	; 0x01
+ 1be:	89 81       	ldd	r24, Y+1	; 0x01
+ 1c0:	8b 30       	cpi	r24, 0x0B	; 11
+ 1c2:	90 f3       	brcs	.-28     	; 0x1a8 <send_report+0x16>
+	send_byte(report[i]);
+}
+ 1c4:	ce 5f       	subi	r28, 0xFE	; 254
+ 1c6:	cd bf       	out	0x3d, r28	; 61
+ 1c8:	df 91       	pop	r29
+ 1ca:	cf 91       	pop	r28
+ 1cc:	08 95       	ret
+
+000001ce <init>:
+
+void init(void)
+{
+ 1ce:	cf 93       	push	r28
+ 1d0:	df 93       	push	r29
+ 1d2:	cd b7       	in	r28, 0x3d	; 61
+ 1d4:	dd 27       	eor	r29, r29
+	// sw
+	PORTB = (1<<PB1)|(1<<PB0);		// pull up
+ 1d6:	88 e3       	ldi	r24, 0x38	; 56
+ 1d8:	90 e0       	ldi	r25, 0x00	; 0
+ 1da:	23 e0       	ldi	r18, 0x03	; 3
+ 1dc:	fc 01       	movw	r30, r24
+ 1de:	20 83       	st	Z, r18
+	
+	// uart
+	UCSRA |= 1<<U2X;
+ 1e0:	8b e2       	ldi	r24, 0x2B	; 43
+ 1e2:	90 e0       	ldi	r25, 0x00	; 0
+ 1e4:	2b e2       	ldi	r18, 0x2B	; 43
+ 1e6:	30 e0       	ldi	r19, 0x00	; 0
+ 1e8:	f9 01       	movw	r30, r18
+ 1ea:	20 81       	ld	r18, Z
+ 1ec:	22 60       	ori	r18, 0x02	; 2
+ 1ee:	fc 01       	movw	r30, r24
+ 1f0:	20 83       	st	Z, r18
+	UBRRH = (u1)(BPS>>8);
+ 1f2:	82 e2       	ldi	r24, 0x22	; 34
+ 1f4:	90 e0       	ldi	r25, 0x00	; 0
+ 1f6:	fc 01       	movw	r30, r24
+ 1f8:	10 82       	st	Z, r1
+	UBRRL = (u1)BPS;
+ 1fa:	89 e2       	ldi	r24, 0x29	; 41
+ 1fc:	90 e0       	ldi	r25, 0x00	; 0
+ 1fe:	2c e0       	ldi	r18, 0x0C	; 12
+ 200:	fc 01       	movw	r30, r24
+ 202:	20 83       	st	Z, r18
+	UCSRB |= 1<<TXEN;				// Enable transmitter
+ 204:	8a e2       	ldi	r24, 0x2A	; 42
+ 206:	90 e0       	ldi	r25, 0x00	; 0
+ 208:	2a e2       	ldi	r18, 0x2A	; 42
+ 20a:	30 e0       	ldi	r19, 0x00	; 0
+ 20c:	f9 01       	movw	r30, r18
+ 20e:	20 81       	ld	r18, Z
+ 210:	28 60       	ori	r18, 0x08	; 8
+ 212:	fc 01       	movw	r30, r24
+ 214:	20 83       	st	Z, r18
+	
+	// vars
+}
+ 216:	df 91       	pop	r29
+ 218:	cf 91       	pop	r28
+ 21a:	08 95       	ret
+
+0000021c <main>:
+
+int main(void)
+{
+ 21c:	cf 93       	push	r28
+ 21e:	df 93       	push	r29
+ 220:	00 d0       	rcall	.+0      	; 0x222 <main+0x6>
+ 222:	cd b7       	in	r28, 0x3d	; 61
+ 224:	dd 27       	eor	r29, r29
+	bool usb_send_press = FALSE;
+ 226:	19 82       	std	Y+1, r1	; 0x01
+
+	init();
+ 228:	d2 df       	rcall	.-92     	; 0x1ce <init>
+ 22a:	01 c0       	rjmp	.+2      	; 0x22e <main+0x12>
+			usb_send_press = FALSE;
+
+			for(u1 i=0;i<sizeof(keystate); i++)
+				keystate[i] = 0;
+		}
+    }
+ 22c:	00 00       	nop
+
+	init();
+	
+    while(1)
+    {
+		if(usb_send_press == FALSE) {
+ 22e:	89 81       	ldd	r24, Y+1	; 0x01
+ 230:	88 23       	and	r24, r24
+ 232:	81 f4       	brne	.+32     	; 0x254 <main+0x38>
+			if(is_pressed_forward()) {
+ 234:	12 df       	rcall	.-476    	; 0x5a <is_pressed_forward>
+ 236:	88 23       	and	r24, r24
+ 238:	29 f0       	breq	.+10     	; 0x244 <main+0x28>
+				send_report(USID_KBD_PAGE_DOWN);
+ 23a:	8e e4       	ldi	r24, 0x4E	; 78
+ 23c:	aa df       	rcall	.-172    	; 0x192 <send_report>
+				usb_send_press = TRUE;
+ 23e:	81 e0       	ldi	r24, 0x01	; 1
+ 240:	89 83       	std	Y+1, r24	; 0x01
+			usb_send_press = FALSE;
+
+			for(u1 i=0;i<sizeof(keystate); i++)
+				keystate[i] = 0;
+		}
+    }
+ 242:	f4 cf       	rjmp	.-24     	; 0x22c <main+0x10>
+    {
+		if(usb_send_press == FALSE) {
+			if(is_pressed_forward()) {
+				send_report(USID_KBD_PAGE_DOWN);
+				usb_send_press = TRUE;
+			} else if(is_pressed_backward()) {
+ 244:	4b df       	rcall	.-362    	; 0xdc <is_pressed_backward>
+ 246:	88 23       	and	r24, r24
+ 248:	89 f3       	breq	.-30     	; 0x22c <main+0x10>
+				send_report(USID_KBD_PAGE_UP);
+ 24a:	8b e4       	ldi	r24, 0x4B	; 75
+ 24c:	a2 df       	rcall	.-188    	; 0x192 <send_report>
+				usb_send_press = TRUE;
+ 24e:	81 e0       	ldi	r24, 0x01	; 1
+ 250:	89 83       	std	Y+1, r24	; 0x01
+			usb_send_press = FALSE;
+
+			for(u1 i=0;i<sizeof(keystate); i++)
+				keystate[i] = 0;
+		}
+    }
+ 252:	ec cf       	rjmp	.-40     	; 0x22c <main+0x10>
+			} else if(is_pressed_backward()) {
+				send_report(USID_KBD_PAGE_UP);
+				usb_send_press = TRUE;
+			}
+		} else {
+			send_report(0x00);  // released
+ 254:	80 e0       	ldi	r24, 0x00	; 0
+ 256:	9d df       	rcall	.-198    	; 0x192 <send_report>
+			usb_send_press = FALSE;
+ 258:	19 82       	std	Y+1, r1	; 0x01
+
+			for(u1 i=0;i<sizeof(keystate); i++)
+ 25a:	1a 82       	std	Y+2, r1	; 0x02
+ 25c:	0a c0       	rjmp	.+20     	; 0x272 <main+0x56>
+				keystate[i] = 0;
+ 25e:	8a 81       	ldd	r24, Y+2	; 0x02
+ 260:	88 2f       	mov	r24, r24
+ 262:	90 e0       	ldi	r25, 0x00	; 0
+ 264:	84 59       	subi	r24, 0x94	; 148
+ 266:	9f 4f       	sbci	r25, 0xFF	; 255
+ 268:	fc 01       	movw	r30, r24
+ 26a:	10 82       	st	Z, r1
+			}
+		} else {
+			send_report(0x00);  // released
+			usb_send_press = FALSE;
+
+			for(u1 i=0;i<sizeof(keystate); i++)
+ 26c:	8a 81       	ldd	r24, Y+2	; 0x02
+ 26e:	8f 5f       	subi	r24, 0xFF	; 255
+ 270:	8a 83       	std	Y+2, r24	; 0x02
+ 272:	8a 81       	ldd	r24, Y+2	; 0x02
+ 274:	82 30       	cpi	r24, 0x02	; 2
+ 276:	98 f3       	brcs	.-26     	; 0x25e <main+0x42>
+				keystate[i] = 0;
+		}
+    }
+ 278:	d9 cf       	rjmp	.-78     	; 0x22c <main+0x10>
+
+0000027a <_exit>:
+ 27a:	f8 94       	cli
+
+0000027c <__stop_program>:
+ 27c:	ff cf       	rjmp	.-2      	; 0x27c <__stop_program>
