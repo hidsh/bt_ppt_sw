@@ -1,7 +1,7 @@
 bt_ppt_sw
 =========
 
-A powerpoint controller using bluetooth shaped Beretta M92F
+A powerpoint controller shaped Beretta M92F with bluetooth
 
 ![image](https://github.com/gnrr/bt_ppt_sw/blob/master/docs/finished.jpg?raw=true)
 
