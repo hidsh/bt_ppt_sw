@@ -9,9 +9,9 @@
 #include "mystd.h"
 #include "keycode.h"
 
-#define BPS 12 // 9600 bps
+#define BPS 12                      // 9600 bps
 
-u1 keystate[] = {0, 0};  // 0:initial    1:pressed    2:released
+u1 keystate[] = {0, 0};             // 0:initial    1:pressed    2:released
 #define KS_FORWARD    0
 #define KS_BACKWARD   1
 
@@ -56,7 +56,7 @@ void send_report(u1 scan_code)
 	report[5] = scan_code;
 	
 	for(u1 i=0; i<sizeof(report)/sizeof(u1); i++)
-	send_byte(report[i]);
+        send_byte(report[i]);
 }
 
 void init(void)
@@ -90,7 +90,7 @@ int main(void)
 				usb_send_press = TRUE;
 			}
 		} else {
-			send_report(0x00);  // released
+			send_report(0x00);      // released
 			usb_send_press = FALSE;
 
 			for(u1 i=0;i<sizeof(keystate); i++)
