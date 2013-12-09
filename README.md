@@ -8,6 +8,6 @@ A powerpoint controller shaped Beretta M92F with bluetooth
 Function
 ----------
 
-- Forward: Pull trigger
-- Backward: Pull slide back
+- Forward: Pull the trigger
+- Backward: Pull the slide back
 
