@@ -34,7 +34,7 @@ bool is_pressed_forward(void)
 bool is_pressed_backward(void)
 {
 	u1 *pks = &keystate[KS_BACKWARD];
-	u1 k = (PINB & (1<<PINB1))? FALSE:TRUE;
+	u1 k = (PINB & (1<<PINB1))? TRUE:FALSE;
 	if((k == TRUE) && (*pks == 0))
 		*pks = 1;
 	else if((k == FALSE) && (*pks == 1))
