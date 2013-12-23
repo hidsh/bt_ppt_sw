@@ -1,0 +1,36 @@
+bt_setting_beretta
+
+Ver 6.15 04/02/2013
+(c) Roving Networks
+***Settings***
+BTA=0006664B3BE8
+BTName=FireFly-3BE8
+Baudrt(SW4)=9600
+Mode  =Pair
+Authen=1
+PinCod=1234
+Bonded=0
+Rem=NONE SET
+***ADVANCED Settings***
+SrvName= SPP
+SrvClass=0000
+DevClass=1F00
+InqWindw=0100
+PagWindw=0100
+CfgTimer=255
+StatuStr=NULL
+HidFlags=200
+DTRtimer=8
+KeySwapr=0
+***OTHER Settings***
+Profile= HID
+CfgChar= $
+SniffEna=0
+LowPower=0
+TX Power=0
+IOPorts= 0
+IOValues=0
+Sleeptmr=0
+DebugMod=0
+RoleSwch=0
+ENDp
