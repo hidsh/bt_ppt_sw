@@ -12,6 +12,8 @@ sm,6	# pairing mode
 su,9600 # 9600bps
 r,1     # reset
 
+C-a C-\ でscreenを抜ける
+
 
 ここで Mac で Bluetooth デバイスを探せば、HIDとして接続できるはず。
 
