@@ -6,11 +6,14 @@
 
 $ screen /dev/tty.XXX 115200
 
-$$$     # enter the command mode
-s~,6	# HID
-sm,6	# pairing mode
-su,9600 # 9600bps
-r,1     # reset
+$$$            # enter the command mode
+s~,6	       # HID
+sm,6	       # pairing mode
+su,9600        # 9600bps
+s-,SLIDEARM100 # BT Name
+
+x              # print setting smmary
+r,1            # reset
 
 C-a C-\ でscreenを抜ける
 
