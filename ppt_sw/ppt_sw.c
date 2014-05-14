@@ -18,6 +18,10 @@ u1 keystate[] = {0, 0};             // 0:initial    1:pressed    2:released
 //             start len   desc  mod    00   scan1 scan2 scan3 scan4 scan5 scan6
 u1 report[] = {0xFD, 0x09, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 
+#define SW_TYPE_A     0             // normal open
+#define SW_TYPE_B     1             // normal close
+u1 sw_type_back;                    // SW_TYPE_A: BERETTA
+                                    // SW_TYPE_B: SIG, GLOCK
 
 bool is_pressed_forward(void)
 {
@@ -34,7 +38,13 @@ bool is_pressed_forward(void)
 bool is_pressed_backward(void)
 {
 	u1 *pks = &keystate[KS_BACKWARD];
-	u1 k = (PINB & (1<<PINB1))? FALSE:TRUE;
+    u1 k;
+
+    if(sw_type_back == SW_TYPE_A)
+        k = (PINB & (1<<PINB1))? FALSE:TRUE;
+    else
+        k = (PINB & (1<<PINB1))? TRUE:FALSE;
+
 	if((k == TRUE) && (*pks == 0))
 		*pks = 1;
 	else if((k == FALSE) && (*pks == 1))
@@ -63,6 +73,7 @@ void init(void)
 {
 	// sw
 	PORTB = (1<<PB1)|(1<<PB0);		// pull up
+    PORTD = (1<<PB5);				// pull up
 	
 	// uart
 	UCSRA |= 1<<U2X;
@@ -71,6 +82,8 @@ void init(void)
 	UCSRB |= 1<<TXEN;				// Enable transmitter
 	
 	// vars
+                                                                 //                            open     short
+    sw_type_back = (PIND & (1<<PIND5))? SW_TYPE_B:SW_TYPE_A;     // PD5(PIN#9) -- GND(PIN#10)  TYPE_B   TYPE_A
 }
 
 int main(void)
