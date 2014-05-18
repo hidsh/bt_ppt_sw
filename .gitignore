@@ -3,3 +3,6 @@
 *.d
 *.lss
 *.elf
+*.srec
+*.eep
+*.mk
