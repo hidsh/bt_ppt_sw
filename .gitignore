@@ -1,3 +1,5 @@
 *.map
 *.o
 *.d
+*.lss
+*.elf
