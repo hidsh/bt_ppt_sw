@@ -1,0 +1,44 @@
+### RN42 のBluetooth設定
+
+結線
+
+
+$ screen /dev/tty.XXX 115200
+
+$$$            # enter the command mode
+s~,6           # HID
+sm,6           # pairing mode
+su,9600        # 9600bps
+s-,SLIDEARM100 # BT Name
+
+x              # print setting smmary
+r,1            # reset
+
+C-a C-\ でscreenを抜ける
+
+
+ここで Mac で Bluetooth デバイスを探せば、HIDとして接続できるはず。
+
+### AVRの書き込み
+
+win xp > atmel studio 6
+File > Open Project/Solution... > Z:/Dropbox/slidearm/repos-latest/bt_ppt_sw-sig/ppt_sw.atsln
+
+AVRDragonを接続
+Tools > Device Programming
+  Tool:AVRDragon
+  Devide:ATTiny2313
+  Interface:ISP
+  Flash: Z:/Dropbox/slidearm/repos-latest/bt_ppt_sw-sig/ppt_sw/Debug/ppt_sw.elf
+
+  Fuseはいじらなくても書ける
+
+### エアソフトガンをばらす
+
+### エアソフトガンのいらない部品を取り去る
+モーターの電線を元から切断し、モーターを捨てる
+
+
+### エアソフトガンに組み付け
+トリガSW
+
